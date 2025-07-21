@@ -93,13 +93,12 @@ function Navbar() {
       <div
         className={`fixed inset-0 overflow-hidden transition-all duration-300 ease-out ${
           visible ? 'translate-x-0' : '-translate-x-full'
-        } z-999`}
-        style={{ backgroundColor: '#ffffff' }}
+        } z-50`}
       >
-        <div className="absolute inset-0 bg-gray-900 opacity-50" />
+        <div className="absolute inset-0 bg-gray-900 opacity-50" onClick={() => setVisible(false)} />
         
-        <div className="relative z-999">
-          <div className="flex items-center justify-between p-4 pt-6">
+        <div className="relative bg-white h-full w-64 shadow-xl">
+          <div className="flex items-center justify-between p-4 pt-6 border-b">
             <img
               src={assets.dropdown_icon}
               className="h-4 w-4 rotate-180 cursor-pointer"
