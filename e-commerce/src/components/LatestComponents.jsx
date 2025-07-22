@@ -16,7 +16,7 @@ function LatestComponents() {
             <div className='text-center py-8 text-3xl'>
                 <Title text1={'LATEST'} text2={'COLLECTIONS'}/>
                 <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-700'>
-                    {/* Add your description text here */}
+                    
                 </p>
             </div>
             {/* Rendering Products */}

@@ -10,11 +10,13 @@ function Navbar() {
       {/* Main Navigation Container */}
       <div className="flex items-center justify-between py-5 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
         {/* Brand Logo */}
+        <Link to='/'>
         <img
           src={assets.logo}
           className="w-28 sm:w-32 md:w-36 lg:w-40 transition-all duration-300"
           alt="Logo"
-        />
+          />
+          </Link> 
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-4 lg:gap-6 text-sm lg:text-base text-gray-700">
