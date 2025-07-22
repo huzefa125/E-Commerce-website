@@ -10,7 +10,7 @@ import Product from './pages/Product';
 import Contact from './pages/Contact';
 import Order from './pages/Order';
 import Navbar from './components/Navbar';
-
+import Footer from './components/Footer';
 function App() {
   return (
     <>
@@ -29,6 +29,7 @@ function App() {
         <Route path="*" element={<h1>404 - Page Not Found</h1>} /> {/* Optional fallback */}
       </Routes>
     </div>
+    <Footer />
     </>
   );
 }
