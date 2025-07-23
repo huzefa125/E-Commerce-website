@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
+
+  // ✅ FIX: Correct property name (lowercase 's')
+  const {setshowsearch} = useContext(ShopContext)
 
   return (
     <div className="w-full max-w-[1920px] mx-auto bg-white z-50">
@@ -11,12 +15,12 @@ function Navbar() {
       <div className="flex items-center justify-between py-5 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
         {/* Brand Logo */}
         <Link to='/'>
-        <img
-          src={assets.logo}
-          className="w-28 sm:w-32 md:w-36 lg:w-40 transition-all duration-300"
-          alt="Logo"
+          <img
+            src={assets.logo}
+            className="w-28 sm:w-32 md:w-36 lg:w-40 transition-all duration-300"
+            alt="Logo"
           />
-          </Link> 
+        </Link> 
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-4 lg:gap-6 text-sm lg:text-base text-gray-700">
@@ -49,6 +53,7 @@ function Navbar() {
           {/* Search Icon */}
           <img
             src={assets.search_icon}
+            onClick={() => setshowsearch(true)} // ✅ FIX: lowercase 's'
             className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
             alt="Search"
           />
@@ -91,7 +96,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Sidebar */}
+      {/* Mobile Navigation Sidebar - Rest of your code remains same */}
       <div
         className={`fixed inset-0 overflow-hidden transition-all duration-300 ease-out ${
           visible ? 'translate-x-0' : '-translate-x-full'
