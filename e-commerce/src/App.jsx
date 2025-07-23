@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ShopContextProvider from './context/ShopContext'; // ✅ Context import
 import Home from './pages/Home';
 import About from './pages/About';
 import Cart from './pages/Cart';
@@ -12,28 +13,30 @@ import Order from './pages/Order';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
+
 function App() {
   return (
-    <>
+    <ShopContextProvider> 
       <Navbar />
       
-    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
-        <SearchBar></SearchBar>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/product/:productID" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} /> {/* Optional fallback */}
-      </Routes>
-    </div>
-    <Footer />
-    </>
+      <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+        <SearchBar /> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:productId" element={<Product />} /> 
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        </Routes>
+      </div>
+      
+      <Footer />
+    </ShopContextProvider>
   );
 }
 
