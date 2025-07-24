@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from './Title';
-import ProductItem from './ProductItem'; // ✅ ADD: Missing import
+import ProductItem from './ProductItem';
 
 const RelatedProducts = ({category, subCategory}) => {
     const {products} = useContext(ShopContext);
@@ -16,7 +16,8 @@ const RelatedProducts = ({category, subCategory}) => {
 
             setRelated(productsCopy.slice(0, 5));
         }
-    }, [products, category, subCategory]) // ✅ FIX: Add dependencies
+    }, [products, category, subCategory])
+  
 
     return (
         <div className='my-24'>
@@ -37,5 +38,4 @@ const RelatedProducts = ({category, subCategory}) => {
         </div>
     )
 }
-
 export default RelatedProducts; 

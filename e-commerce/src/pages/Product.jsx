@@ -6,7 +6,7 @@ import RelatedProducts from '../components/RelatedProduct';
 
 function Product() {
     const {productId} = useParams();
-    const {products} = useContext(ShopContext);
+    const {products,addToCart} = useContext(ShopContext);
     const [productData, setproductData] = useState(null);
     const [image, setImage] = useState('');
     const [size, setSize] = useState('');
@@ -75,7 +75,7 @@ function Product() {
                             {productData.sizes.map((item, index) => (
                                 <button
                                     onClick={() => setSize(item)}
-                                    className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`}
+                                    className={`border py-2 px-4  ${item === size ? 'bg-black text-white' : ''}`}
                                     key={index}
                                 >
                                     {item}
@@ -84,7 +84,7 @@ function Product() {
                         </div>
                     </div>
 
-                    <button className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>
+                    <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>
                         ADD TO CART
                     </button>
                     
@@ -104,14 +104,14 @@ function Product() {
                     <p className='border px-5 py-3 text-sm cursor-pointer'>Reviews (122)</p>
                 </div>
                 
-                <div className='flex flex-col gap-4 border border-t-0 px-6 py-6 text-sm text-gray-500'>
+                <div className='flex flex-col gap-4 border border-t px-6 py-6 text-sm text-gray-500'>
                     <p>Experience ultimate comfort with this premium cotton crew neck t-shirt. Crafted from 100% organic cotton with a soft, breathable fabric that feels great against your skin. Features a classic fit that's neither too loose nor too tight, making it perfect for casual outings, gym sessions, or lounging at home.</p>
                     
                     <p>The durable construction ensures it maintains its shape and color even after multiple washes. Available in multiple sizes for the perfect fit. Maximize your workout performance with this moisture-wicking athletic t-shirt engineered with advanced fabric technology.</p>
                 </div>
             </div>
 
-            {/* ✅ FIX: Correct component name */}
+            {/*  Correct component name */}
             <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
         </div>
     );

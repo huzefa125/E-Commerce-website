@@ -6,8 +6,8 @@ import { ShopContext } from "../context/ShopContext";
 function Navbar() {
   const [visible, setVisible] = useState(false);
 
-  // ✅ FIX: Correct property name (lowercase 's')
-  const {setshowsearch} = useContext(ShopContext)
+ 
+  const { setshowsearch, getCardCount } = useContext(ShopContext);
 
   return (
     <div className="w-full max-w-[1920px] mx-auto bg-white z-50">
@@ -60,11 +60,13 @@ function Navbar() {
           
           {/* Profile Dropdown */}
           <div className="relative group">
+            <Link to='/login'>
             <img
               src={assets.profile_icon}
               className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform duration-200"
               alt="Profile"
-            />
+              />
+              </Link>
             <div className="hidden group-hover:block absolute right-0 pt-4 dropdown-menu z-50">
               <div className="flex flex-col gap-2 w-32 sm:w-36 py-3 px-4 bg-slate-100 text-gray-500 rounded shadow-md">
                 <p className="text-sm hover:text-black transition-colors cursor-pointer">My Profile</p>
@@ -82,7 +84,7 @@ function Navbar() {
               alt="Cart"
             />
             <span className="absolute -right-1 -bottom-1 bg-black text-white rounded-full w-5 h-5 flex items-center justify-center text-xs sm:text-[10px]">
-              10
+              {getCardCount()} {/* ✅ FIX: Added parentheses to call the function */}
             </span>
           </Link>
 
@@ -96,7 +98,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Sidebar - Rest of your code remains same */}
+      {/* Mobile Navigation Sidebar */}
       <div
         className={`fixed inset-0 overflow-hidden transition-all duration-300 ease-out ${
           visible ? 'translate-x-0' : '-translate-x-full'
