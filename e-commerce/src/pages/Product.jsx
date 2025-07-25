@@ -6,15 +6,15 @@ import RelatedProducts from '../components/RelatedProduct';
 
 function Product() {
     const {productId} = useParams();
-    const {products,addToCart} = useContext(ShopContext);
-    const [productData, setproductData] = useState(null);
+    const {products, addToCart} = useContext(ShopContext);
+    const [productData, setProductData] = useState(null);
     const [image, setImage] = useState('');
     const [size, setSize] = useState('');
     
     const fetchProductData = () => {
         products.map((item) => {
             if(item._id === productId){
-                setproductData(item);
+                setProductData(item);
                 setImage(item.image[0]);
                 return null;
             }
@@ -24,6 +24,18 @@ function Product() {
     useEffect(() => {
         fetchProductData();
     }, [productId, products]);
+
+    // ✅ NEW: Auto scroll to top when product changes
+    useEffect(() => {
+        // Scroll to top when productId changes (when new product is loaded)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // For smooth scrolling animation
+        });
+        
+        // Reset size selection when product changes
+        setSize('');
+    }, [productId]);
 
     if (!productData) {
         return <div className='opacity-0'>Loading...</div>;
@@ -75,7 +87,7 @@ function Product() {
                             {productData.sizes.map((item, index) => (
                                 <button
                                     onClick={() => setSize(item)}
-                                    className={`border py-2 px-4  ${item === size ? 'bg-black text-white' : ''}`}
+                                    className={`border py-2 px-4 ${item === size ? 'bg-black text-white' : ''}`}
                                     key={index}
                                 >
                                     {item}
@@ -84,7 +96,10 @@ function Product() {
                         </div>
                     </div>
 
-                    <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>
+                    <button 
+                        onClick={() => addToCart(productData._id, size)} 
+                        className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'
+                    >
                         ADD TO CART
                     </button>
                     
@@ -111,7 +126,7 @@ function Product() {
                 </div>
             </div>
 
-            {/*  Correct component name */}
+            {/* Related Products */}
             <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
         </div>
     );
